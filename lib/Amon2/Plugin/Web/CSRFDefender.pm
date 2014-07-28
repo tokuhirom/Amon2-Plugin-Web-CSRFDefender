@@ -3,7 +3,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = "0.01";
+our $VERSION = "6.03";
 
 use Amon2::Util ();
 use Digest::SHA ();
