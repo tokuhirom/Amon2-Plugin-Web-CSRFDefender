@@ -59,7 +59,6 @@ sub init {
     my $csrf_token_generator = $conf->{csrf_token_generator} || sub {
         Digest::SHA1::sha1_hex(rand() . $$ . {} . time)
     };
-    my $hash_function = $conf->{hash_function} || \&Digest::SHA::sha1; 
     Amon2::Util::add_method($c, 'get_csrf_defender_token', sub {
         my $self = shift;
         if (my $token = $self->session->get('csrf_token')) {
