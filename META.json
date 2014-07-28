@@ -1,5 +1,5 @@
 {
-   "abstract" : "It's new $module",
+   "abstract" : "Anti CSRF filter",
    "author" : [
       "Tokuhiro Matsuno <tokuhirom@gmail.com>"
    ],
@@ -42,16 +42,32 @@
       },
       "runtime" : {
          "requires" : {
+            "Amon2::Util" : "0",
+            "Digest::SHA" : "0",
             "perl" : "5.008001"
          }
       },
       "test" : {
          "requires" : {
+            "Amon2::Lite" : "0",
+            "Digest::HMAC" : "0",
+            "HTTP::Session::Store::OnMemory" : "0",
             "Test::More" : "0.98"
          }
       }
    },
    "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/tokuhirom/Amon2-Plugin-Web-CSRFDefender/issues"
+      },
+      "homepage" : "https://github.com/tokuhirom/Amon2-Plugin-Web-CSRFDefender",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/tokuhirom/Amon2-Plugin-Web-CSRFDefender.git",
+         "web" : "https://github.com/tokuhirom/Amon2-Plugin-Web-CSRFDefender"
+      }
+   },
    "version" : "0.01",
    "x_authority" : "cpan:TOKUHIROM"
 }
