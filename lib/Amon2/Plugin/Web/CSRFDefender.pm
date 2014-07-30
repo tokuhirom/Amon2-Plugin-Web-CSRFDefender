@@ -157,6 +157,10 @@ it under the same terms as Perl itself.
 
 Tokuhiro Matsuno E<lt>tokuhirom@gmail.comE<gt>
 
+=head1 THANKS TO
+
+Kazuho Oku and mala for security advice.
+
 =head1 SEE ALSO
 
 L<Amon2>
