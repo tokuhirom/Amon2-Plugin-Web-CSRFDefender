@@ -2,5 +2,11 @@ Revision history for Perl extension Amon2-Plugin-Web-CSRFDefender
 
 {{$NEXT}}
 
-    - original version
+7.00 2014-07-30T06:55:58Z
+
+    - Split from Amon2 core distribution
+    - Previous version generates csrf token by Amon2::Util::random_string.
+      It's bit unsecure. New version generates more secure random string generator by default.
+    - Added new configuration parameter named 'csrf_token_generator'.
+      You can specify your favorite csrf token generation.
 

@@ -67,6 +67,6 @@
          "web" : "https://github.com/tokuhirom/Amon2-Plugin-Web-CSRFDefender"
       }
    },
-   "version" : "6.03",
+   "version" : "7.00",
    "x_authority" : "cpan:TOKUHIROM"
 }

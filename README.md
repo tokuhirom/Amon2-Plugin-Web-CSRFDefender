@@ -56,6 +56,10 @@ it under the same terms as Perl itself.
 
 Tokuhiro Matsuno <tokuhirom@gmail.com>
 
+# THANKS TO
+
+Kazuho Oku and mala for security advice.
+
 # SEE ALSO
 
 [Amon2](https://metacpan.org/pod/Amon2)
