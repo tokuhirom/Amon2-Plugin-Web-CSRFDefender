@@ -2,6 +2,10 @@ Revision history for Perl extension Amon2-Plugin-Web-CSRFDefender
 
 {{$NEXT}}
 
+7.01 2014-07-31T21:08:10Z
+
+    - More secure random number generation.
+
 7.00 2014-07-30T06:55:58Z
 
     - Split from Amon2 core distribution

@@ -41,10 +41,6 @@ Do not use this with [HTTP::Session2](https://metacpan.org/pod/HTTP::Session2). 
 
     You can change the csrf token generation algorithm.
 
-    Default implementation is following code:
-
-        Digest::SHA1::sha1_hex(rand() . $$ . {} . time)
-
 # LICENSE
 
 Copyright (C) Tokuhiro Matsuno.
