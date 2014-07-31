@@ -62,7 +62,7 @@ subtest 'post method' => sub {
     my $mech = Test::WWW::Mechanize::PSGI->new( app => $app, );
     $mech->get_ok('http://localhost/form');
     $mech->content_like(
-        qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]);
+        qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]);
     $mech->submit_form( form_number => 1, fields => { body => 'yay' } );
     is $mech->base, 'http://localhost/finished';
     is $COMMIT, 1;
@@ -85,7 +85,7 @@ subtest 'get method' => sub {
     my $mech = Test::WWW::Mechanize::PSGI->new( app => $app, );
     $mech->get_ok('http://localhost/form_get');
     $mech->content_unlike(
-        qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]);
+        qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]);
     $mech->submit_form( form_number => 1, fields => { body => 'yay' } );
     is $mech->base, 'http://localhost/finished';
     is $COMMIT, 1;
@@ -96,7 +96,7 @@ subtest 'no method' => sub {
     my $mech = Test::WWW::Mechanize::PSGI->new( app => $app, );
     $mech->get_ok('http://localhost/form_no_method');
     $mech->content_unlike(
-        qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]);
+        qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]);
     $mech->submit_form( form_number => 1, fields => { body => 'yay' } );
     is $mech->base, 'http://localhost/finished';
     is $COMMIT, 1;
@@ -106,14 +106,14 @@ subtest 'multi form' => sub {
     my $mech = Test::WWW::Mechanize::PSGI->new( app => $app, );
     $mech->get_ok('http://localhost/form_multi');
     $mech->content_like(
-        qr[<form action="/do" method="post" id="f1">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]m);
+        qr[<form action="/do" method="post" id="f1">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]m);
     $mech->content_like(
-        qr[<form action="/do" method='POST' id="f2">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]m);
+        qr[<form action="/do" method='POST' id="f2">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]m);
     $mech->content_like(
-        qr[<form action="/do" method=POST id="f3">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]m);
+        qr[<form action="/do" method=POST id="f3">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]m);
 
     $mech->content_unlike(
-        qr[<form action="/do" id="f4">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]m);
+        qr[<form action="/do" id="f4">\n<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]m);
 };
 
 done_testing;

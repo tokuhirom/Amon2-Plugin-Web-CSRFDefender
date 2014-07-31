@@ -36,7 +36,7 @@ my $COMMIT;
     sub create_view { MyApp::Web::View->new() }
     sub dispatch {
         my $c = shift;
-        ::like $c->get_csrf_defender_token(), qr{^[a-zA-Z0-9_]{40}$};
+        ::like $c->get_csrf_defender_token(), qr{^[a-zA-Z0-9_-]{40}$};
         if ($c->req->path_info eq '/form') {
             return $c->render('form.mt');
         } elsif ($c->req->path_info eq '/do' && $c->req->method eq 'POST') {
@@ -74,7 +74,7 @@ subtest 'MyApp::Web::PlackSession' => sub {
             app => $app,
         );
         $mech->get_ok('http://localhost/form');
-        $mech->content_like(qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]);
+        $mech->content_like(qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]);
         $mech->submit_form(form_number => 1, fields => {body => 'yay'});
         is $mech->base, 'http://localhost/finished';
         is $COMMIT, 1;
@@ -87,7 +87,7 @@ subtest 'MyApp::Web::PlackSession' => sub {
         );
         $mech->max_redirect(0);
         $mech->get_ok('http://localhost/form');
-        ok($mech->content() =~ qr[<input type="hidden" name="csrf_token" value="([a-zA-Z0-9_]{40})" />]);
+        ok($mech->content() =~ qr[<input type="hidden" name="csrf_token" value="([a-zA-Z0-9_-]{40})" />]);
         my $csrf_token = $1;
         $mech->default_headers->push_header('X-CSRF-Token' => $csrf_token);
         $mech->post('/do', { body => 'yay' });
@@ -114,7 +114,7 @@ subtest 'MyApp::Web::PlackSession' => sub {
                 my $cb = shift;
                 my $res = $cb->(HTTP::Request->new(GET => 'http://localhost/get_csrf_defender_token'));
                 is $res->code, '200';
-                ::like $res->content(), qr{^[a-zA-Z0-9_]{40}$};
+                ::like $res->content(), qr{^[a-zA-Z0-9_-]{40}$};
             };
     };
 };

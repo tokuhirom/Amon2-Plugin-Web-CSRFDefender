@@ -55,7 +55,7 @@ subtest 'success case' => sub {
         app => $app,
     );
     $mech->get_ok('http://localhost/form');
-    $mech->content_like(qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_]{40}" />]);
+    $mech->content_like(qr[<input type="hidden" name="csrf_token" value="[a-zA-Z0-9_-]{40}" />]);
     $mech->submit_form(form_number => 1, fields => {body => 'yay'});
     is $mech->base, 'http://localhost/finished';
     is $COMMIT, 1;
@@ -92,7 +92,7 @@ subtest 'get_csrf_defender_token' => sub {
             my $cb = shift;
             my $res = $cb->(HTTP::Request->new(GET => 'http://localhost/get_csrf_defender_token'));
             is $res->code, '200';
-            ::like $res->content(), qr{^[a-zA-Z0-9_]{40}$};
+            ::like $res->content(), qr{^[a-zA-Z0-9_-]{40}$};
         };
 };
 

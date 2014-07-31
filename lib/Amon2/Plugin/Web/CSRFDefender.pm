@@ -6,7 +6,7 @@ use warnings;
 our $VERSION = "7.00";
 
 use Amon2::Util ();
-use Digest::SHA ();
+use Amon2::Plugin::Web::CSRFDefender::Random;
 
 our $ERROR_HTML = <<'...';
 <!doctype html>
@@ -56,9 +56,7 @@ sub init {
             }
         );
     }
-    my $csrf_token_generator = $conf->{csrf_token_generator} || sub {
-        Digest::SHA1::sha1_hex(rand() . $$ . {} . time)
-    };
+    my $csrf_token_generator = $conf->{csrf_token_generator} || \&Amon2::Plugin::Web::CSRFDefender::Random::generate_session_id;
     Amon2::Util::add_method($c, 'get_csrf_defender_token', sub {
         my $self = shift;
         if (my $token = $self->session->get('csrf_token')) {
@@ -84,7 +82,6 @@ sub validate_csrf {
     }
     return 1; # good
 }
-
 
 1;
 __END__
@@ -139,10 +136,6 @@ It's very useful but it hits performance issue if your site is very high traffic
 =item csrf_token_generator
 
 You can change the csrf token generation algorithm.
-
-Default implementation is following code:
-
-    Digest::SHA1::sha1_hex(rand() . $$ . {} . time)
 
 =back
 
