@@ -3,7 +3,7 @@ use 5.008001;
 use strict;
 use warnings;
 
-our $VERSION = "7.01";
+our $VERSION = "7.02";
 
 use Amon2::Util ();
 use Amon2::Plugin::Web::CSRFDefender::Random;
