@@ -49,9 +49,9 @@
       },
       "test" : {
          "requires" : {
-            "Amon2::Lite" : "0",
             "HTTP::Session::Store::OnMemory" : "0",
-            "Test::More" : "0.98"
+            "Test::More" : "0.98",
+            "Test::Requires" : "0"
          }
       }
    },
@@ -67,6 +67,6 @@
          "web" : "https://github.com/tokuhirom/Amon2-Plugin-Web-CSRFDefender"
       }
    },
-   "version" : "7.02",
+   "version" : "7.03",
    "x_authority" : "cpan:TOKUHIROM"
 }
